@@ -1,0 +1,35 @@
+.search {
+  width: 95vw;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.form {
+  width: 95vw;
+}
+
+.form input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid lightblue;
+  font-size: 1.3rem;
+  letter-spacing: 8px;
+}
+
+.form input::placeholder {
+  text-align: center;
+  transform: translateX(1rem);
+}
+
+.form input[value] {
+  text-align: center;
+}
+
+.icon {
+  width: 4%;
+  transform: translateX(0.2rem);
+}

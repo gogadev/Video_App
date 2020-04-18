@@ -1,0 +1,13 @@
+.videos {
+  width: 95vw;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  margin: 1rem auto;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 3.5rem auto;
+}

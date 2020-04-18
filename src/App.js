@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Navbar, SearchBar, VideoList, Footer } from "./components";
+
+import API from "./api/API";
+
+import "./App.css";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videos: [],
+    };
+  }
+
+  handleSubmit = async (search = "cat") => {
+    const response = await API.get("search", {
+      params: {
+        part: "snippet",
+        maxResults: 10,
+        key: process.env.REACT_APP_API_KEY,
+        q: search,
+      },
+    });
+    // console.log(response.data);
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0],
+    });
+  };
+
+  render() {
+    const { videos } = this.state;
+    return (
+      <div>
+        <Navbar />
+        <SearchBar onFormSubmit={this.handleSubmit} />
+        <VideoList videos={videos} />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
